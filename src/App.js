@@ -22,9 +22,9 @@ function App() {
 
    const getData = () => {
         axios
-            .get("http://localhost:3001/api/photos")
+            .get("http://localhost:5005/api/photos")
             .then((photosFromAPI) => {
-                    setAllPhotos(photosFromAPI.data);
+                    allPhotos(photosFromAPI.data);
                 })
             .catch((err) => console.log({ err }));
     };
