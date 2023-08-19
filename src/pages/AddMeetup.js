@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
+const API_URL= process.env.REACT_APP_API_URL || "http://localhost:5005/";
+
 export default function AddMeetup(){
 
     const [photo, setPhoto] = useState([]);
@@ -27,7 +29,7 @@ export default function AddMeetup(){
         console.log(uploadData);
     
     axios
-    .post("http://localhost:5005/meet",uploadData, {
+    .post(`${API_URL}/meet`,uploadData, {
         headers: {"Content-Type": "multipart/form-data"},
         withCredentials: true,
     })

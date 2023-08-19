@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+const API_URL= process.env.REACT_APP_API_URL || "http://localhost:5005/";
 
 export default function AddPhoto(){
 
@@ -25,7 +26,7 @@ export default function AddPhoto(){
         console.log(uploadData);
     
     axios
-    .post("http://localhost:5005/photo",uploadData, {
+    .post(`${API_URL}/photo`,uploadData, {
         headers: {"Content-Type": "multipart/form-data"},
         withCredentials: true,
     })
