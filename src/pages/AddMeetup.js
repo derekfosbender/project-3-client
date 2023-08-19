@@ -52,9 +52,9 @@ export default function AddMeetup(){
       }
 
     return (
-        <div>
+        <div className="form-container">
             <form onSubmit={handleSubmit}>
-            <label>Add Photo</label>
+            <label htmlFor="Add Photo">Add Photo</label>
            <input 
            type="file"
            name="photo"

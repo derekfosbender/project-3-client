@@ -8,10 +8,12 @@ function Navbar() {
 
     return (
         
-            <nav>
-            <Link to="/photos"><button>Posts</button></Link>
-            <Link to="/signup"><button>Sign Up</button></Link>
-            <Link to="/login"><button>Login</button></Link>
+            <nav className="navbar">
+                <a href="/photos" className="navbar-brand">Photos</a>
+                <ul className="navbar-nav">
+            <a href="/signup" className="nav-link">Signup</a>
+            <></>
+            <a href="/login" className="nav-link">Login</a>
 
             <>
             
@@ -19,14 +21,14 @@ function Navbar() {
             {isLoggedIn && (
             <>
             
+            {/* <span>{user && user.name}</span> */}
+            <a href="/photos/new" className="nav-link">Add Photo</a>
+            <a href="/meetups" className="nav-link">Meetups</a>
+            <a href="/meetups/new" className="nav-link">Add Meetup</a>
             <button onClick={logOutUser}>Logout</button>
-            <span>{user && user.name}</span>
-            <Link to="/photos/new"><button>Add Post</button></Link>
-            <Link to="/meetups"><button>Meetups</button></Link>
-            <Link to="/meetups/new"><button>Add Meetup</button></Link>
-
             </>
             )}
+            </ul>
             </nav>
 
         
