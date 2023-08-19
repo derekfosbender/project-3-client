@@ -5,7 +5,7 @@ const API_URL= process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 
 export default function Meets() {
-    const [meets, setMeets] = useState([])
+    const [getMeets, setMeets] = useState([])
 
     useEffect(() => {
         axios.get(`${API_URL}/meet`)
@@ -18,17 +18,16 @@ export default function Meets() {
         });
     }, []);
 
-    console.log("meets:", meets);
-
-    if (!meets || meets.length === 0) {
+    if (!getMeets || getMeets.length === 0) {
         return <div></div>;
     }
 
     return (
       <div>
-      {meets.map((meet, i) => (
+        {console.log({getMeets})}
+      {getMeets.map((meet,i) => (
         <div className='row' key={meet._id}>
-          <img className='img' src={meet.photo} alt={`Meet ${i}`} />
+          <img className='img' src={meet.photo} alt={` ${i}`} />
           <Link to={`/meet/${meet._id}`}>Meet Details</Link>
         </div>
       ))}

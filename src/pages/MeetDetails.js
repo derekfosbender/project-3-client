@@ -28,7 +28,7 @@ export default function MeetDetails() {
         <div>
 
         <div>
-
+          <img className='img' src={detailsMeet.photo} />
           <p><span>Description:</span> {detailsMeet.description}</p>
           <br></br>
           <p><span>Location:</span> {detailsMeet.location}</p>
