@@ -14,7 +14,7 @@ export default function Photos() {
             setPhotos(response.data.photo);
         })
         .catch(error => {
-            console.log("An error has occured getting photos:", error);
+            console.log("error getting photos:", error);
         });
     }, []);
 

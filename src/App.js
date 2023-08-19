@@ -12,6 +12,7 @@ import AddMeetup from "./pages/AddMeetup";
 import MeetupPage from "./pages/MeetupPage";
 import Photo from "./components/Photo";
 import axios from "axios";
+import Meetup from "./components/Meetup";
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
             <Routes>
                 <Route path="/photos" element={<IsPrivate><Photo /></IsPrivate>}/>
                 <Route path="/photos/new" element={<IsPrivate><AddPhoto /></IsPrivate>} />
-                <Route path="/meetups" element={<IsPrivate><MeetupPage /></IsPrivate>} />
+                <Route path="/meetups" element={<IsPrivate><Meetup /></IsPrivate>} />
                 <Route path="/meetups/new" element={<IsPrivate><AddMeetup /></IsPrivate> } />
                 <Route path="/signup" element={<Signup/>} />
                 <Route path="/login" element={<LoginPage/>} />

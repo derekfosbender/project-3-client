@@ -1,29 +1,30 @@
 import axios from "axios";
-import React, { Component } from "react";
-import {Link} from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-class AddMeetup extends Component {
-    constructor(props) {
-        super(props);
+export default function AddMeetup(){
 
-    this.state = {
-        photo: "",
-        location: "",
-        description: "",
-        time: "",
-      };
-    }
+    const [photo, setPhoto] = useState([]);
+    const [description, setDescription] = useState();
+    const [location, setLocation] = useState('');
+    const [time, setTime] = useState('');
 
-      handleSubmit = (event) => {
+    const navigate = useNavigate();
+
+
+    const handleSubmit = (event) => {
         event.preventDefault();
     
         const uploadData = new FormData();
     
-        uploadData.append("photo", this.state.photo)
-        uploadData.append("location", this.state.location)
-        uploadData.append("description", this.state.description)
-        uploadData.append("time", this.state.time)
+        for (let i = 0; i < photo.length; i++) {
+            uploadData.append(`meet`, photo[i]);
+          }
+          uploadData.append('description', description)
+        uploadData.append('location', location)
+        uploadData.append('time', time)
+        console.log(uploadData);
     
     axios
     .post("http://localhost:5005/meet",uploadData, {
@@ -31,77 +32,55 @@ class AddMeetup extends Component {
         withCredentials: true,
     })
     .then((response) => {
-        this.props.getData();
+      setPhoto([]);
+      setDescription('');
+      setLocation('');
+      setTime('');
 
-        this.fileInput.value = "";
-
-        this.setState({
-         photo: "",
-         location: "",
-         description: "",
-         time: "",
-
-        });
-        // navigate('/');
+      navigate('/meets');
+        
     })
     .catch((error) => console.log({error}));
     };
 
-    handleChange = (event) => {
-        const { name, value } = event.target;
+    const handlePhotos = (e) => {
+        const files = e.target.files;
+        console.log(files);
+        setPhoto(e.target.files)
+      }
 
-        this.setState({ [name]: value });
-    };
-
-    handleCheckboxChange = (event) => {
-        const { name, checked } = event.target;
-
-        this.setState({ [name]: checked });
-    };
-
-    handleImageChange = (event) => {
-        const { files } = event.target;
-
-        this.setState({ photo: files[0] });
-    };
-
-    render() {
     return (
         <div>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={handleSubmit}>
             <label>Add Photo</label>
            <input 
            type="file"
            name="photo"
-           onChange={(event) => this.handleChange(event)}
-           ref={(ref) => (this.fileInput = ref)}
-           />
-
-           <label>Add Location</label>
-           <input
-           type="text"
-           name="location"
-           onChange={(event) => this.handleChange(event)}
-           value={this.state.location}
+           onChange={handlePhotos}
            />
 
            <label>Add Description</label>
            <input
            type="text"
            name="description"
-           onChange={(event) => this.handleChange(event)}
-           value={this.state.description}
+           onChange={(event) => setDescription(event.target.value)}
+           />
+
+           <label>Add Location</label>
+           <input
+           type="text"
+           name="location"
+           onChange={(event) => setLocation(event.target.value)}
            />
 
            <label>Add Time</label>
            <input
            type="text"
            name="time"
-           onChange={(event) => this.handleChange(event)}
-           value={this.state.time}
+           onChange={(event) => setTime(event.target.value)}
            />
 
-           <button type="submit">Create Post</button>
+           <button type="submit">Create Meet</button>
        
        </form>
         </div>
@@ -109,6 +88,3 @@ class AddMeetup extends Component {
     )
 
 }
-}
-
-export default AddMeetup;
