@@ -39,7 +39,7 @@ console.log(requestBody);
   .then((response) => {
     console.log(response);
 
-    navigate(`/photos/${photoId}`)
+    navigate(`/photo/${photoId}`)
   });
 };
 
