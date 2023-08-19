@@ -29,9 +29,10 @@ export default function MeetDetails() {
 
         <div>
 
-          <p><span>Photo:</span> {detailsMeet.photo}</p>
           <p><span>Description:</span> {detailsMeet.description}</p>
+          <br></br>
           <p><span>Location:</span> {detailsMeet.location}</p>
+          <br></br>
           <p><span>Time:</span> {detailsMeet.time}</p>
 
           <div>

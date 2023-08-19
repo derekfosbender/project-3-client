@@ -28,9 +28,8 @@ export default function PhotoDetails() {
         <div>
 
         <div>
-
-          <p><span>Photo:</span> {detailsPhoto.photo}</p>
           <p><span>Location:</span> {detailsPhoto.location}</p>
+          <br></br>
           <p><span>Time:</span> {detailsPhoto.time}</p>
 
           <div>
