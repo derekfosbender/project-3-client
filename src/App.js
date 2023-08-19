@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Routes,Route} from "react-router-dom"
+import {Routes,Route,Navigate} from "react-router-dom"
 import './App.css';
 import Navbar from "./components/Navbar";
 import IsPrivate from "./components/IsPrivate";
@@ -16,11 +16,11 @@ import MeetDetails from './pages/MeetDetails';
 import PhotoDetails from './pages/PhotoDetails';
 
 function App() {
-
     return (
         <div className='App'>
             <Navbar/>
             <Routes>
+                <Route path="/" element={<Navigate to="/photos" />} />
                 <Route path="/photos" element={<Photo />}/>
                 <Route path="/photos/new" element={<IsPrivate><AddPhoto /></IsPrivate>} />
                 <Route path='/photo/:photoId' element={<IsPrivate><PhotoDetails/></IsPrivate>} />
