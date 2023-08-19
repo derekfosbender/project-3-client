@@ -23,8 +23,8 @@ function Navbar() {
             
             {/* <span>{user && user.name}</span> */}
             <a href="/photos/new" className="nav-link">Add Photo</a>
-            <a href="/meetups" className="nav-link">Meetups</a>
-            <a href="/meetups/new" className="nav-link">Add Meetup</a>
+            <a href="/meets" className="nav-link">Meetups</a>
+            <a href="/meets/new" className="nav-link">Add Meetup</a>
             <button onClick={logOutUser}>Logout</button>
             </>
             )}

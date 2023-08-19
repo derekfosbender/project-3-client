@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import axios from "axios";
-const API_URL= process.env.REACT_APP_API_URL || "http://localhost:5005/";
+const API_URL= process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 
 export default function Meets() {
@@ -11,20 +11,28 @@ export default function Meets() {
         axios.get(`${API_URL}/meet`)
         .then(response => {
             console.log("Server Response:", response.data)
-            setMeets(response.data.meet);
+            setMeets(response.data.meets);
         })
         .catch(error => {
             console.log("error getting meets:", error);
         });
     }, []);
 
+    console.log("meets:", meets);
 
-  return (
-    <div>
-        {meets.map((meet, i) => (
-        <Link key={meet._id} to={`/meet/${meet._id}`}><li>{meet.descrpition}-{meet.location}-{meet.time}</li></Link>
-        ))}
-        
-    </div>
-  )
-}
+    if (!meets || meets.length === 0) {
+        return <div>No meets available.</div>;
+    }
+
+    return (
+        <div>
+          {meets.map((meet, i) => (
+            <div key={meet._id}>
+              <img src={meet.photo} alt={`Meet ${i}`} />
+              <br></br>
+              <Link to={`/meet/${meet._id}`}>Meet Details</Link>
+            </div>
+          ))}
+        </div>
+      );
+    }

@@ -136,3 +136,20 @@ button {
 button:hover {
   background-color: #f42828;
 }
+
+images-conatiner {
+  display: table;
+  flex-wrap: wrap;
+}
+
+.img {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}

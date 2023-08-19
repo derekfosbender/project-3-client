@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-const API_URL= process.env.REACT_APP_API_URL || "http://localhost:5005/";
+const API_URL= process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 export default function AddMeetup(){
 
@@ -21,7 +21,7 @@ export default function AddMeetup(){
         const uploadData = new FormData();
     
         for (let i = 0; i < photo.length; i++) {
-            uploadData.append(`meet`, photo[i]);
+            uploadData.append(`photo`, photo[i]);
           }
           uploadData.append('description', description)
         uploadData.append('location', location)
