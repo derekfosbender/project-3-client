@@ -21,7 +21,7 @@ export default function Meets() {
     console.log("meets:", meets);
 
     if (!meets || meets.length === 0) {
-        return <div>No meets available.</div>;
+        return <div></div>;
     }
 
     return (

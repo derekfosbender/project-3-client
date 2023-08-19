@@ -19,7 +19,7 @@ export default function Photos() {
     }, []);
 
     if (!photos || photos.length === 0) {
-      return <div>No photos available.</div>;
+      return <div></div>;
   }
 
   return (
