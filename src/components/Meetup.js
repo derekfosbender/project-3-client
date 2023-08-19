@@ -25,14 +25,13 @@ export default function Meets() {
     }
 
     return (
-        <div>
-          {meets.map((meet, i) => (
-            <div key={meet._id}>
-              <img src={meet.photo} alt={`Meet ${i}`} />
-              <br></br>
-              <Link to={`/meet/${meet._id}`}>Meet Details</Link>
-            </div>
-          ))}
+      <div>
+      {meets.map((meet, i) => (
+        <div className='row' key={meet._id}>
+          <img className='img' src={meet.photo} alt={`Meet ${i}`} />
+          <Link to={`/meet/${meet._id}`}>Meet Details</Link>
         </div>
+      ))}
+    </div>
       );
     }
