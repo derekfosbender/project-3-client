@@ -1,27 +1,27 @@
 import axios from "axios";
-import React, { Component } from "react";
-import {Link} from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-class AddPhoto extends Component {
-    constructor(props) {
-        super(props);
+export default function AddPhoto(){
 
-    this.state = {
-        photo: "",
-        location: "",
-        time: "",
-      };
-    }
+    const [photo, setPhoto] = useState([]);
+    const [location, setLocation] = useState('');
+    const [time, setTime] = useState('');
 
-      handleSubmit = (event) => {
+    const navigate = useNavigate();
+
+
+    const handleSubmit = (event) => {
         event.preventDefault();
     
         const uploadData = new FormData();
     
-        uploadData.append("photo", this.state.photo)
-        uploadData.append("location", this.state.location)
-        uploadData.append("time", this.state.time)
+        for (let i = 0; i < photo.length; i++) {
+            uploadData.append(`photo`, photo[i]);
+          }
+        uploadData.append('location', location)
+        uploadData.append('time', time)
         console.log(uploadData);
     
     axios
@@ -30,67 +30,44 @@ class AddPhoto extends Component {
         withCredentials: true,
     })
     .then((response) => {
-        this.props.getData();
+      setPhoto([]);
+      setLocation('');
+      setTime('');
 
-        this.fileInput.value = "";
-
-        this.setState({
-         photo: "",
-         location: "",
-         time: "",
-
-        });
+      navigate('/photos');
         
     })
     .catch((error) => console.log({error}));
     };
 
-    handleChange = (event) => {
-        const { name, value } = event.target;
-
-        this.setState({ [name]: value });
-    };
-
-    handleCheckboxChange = (event) => {
-        const { name, checked } = event.target;
-
-        this.setState({ [name]: checked });
-    };
-
-    handleImageChange = (event) => {
-        const { files } = event.target;
-
+    const handlePhotos = (e) => {
+        const files = e.target.files;
         console.log(files);
-        this.setState({ photo: files[0] });
-    
-    };
+        setPhoto(e.target.files)
+      }
 
-    render() {
     return (
         <div>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={handleSubmit}>
             <label>Add Photo</label>
            <input 
            type="file"
            name="photo"
-           onChange={(event) => this.handleChange(event)}
-           ref={(ref) => (this.fileInput = ref)}
+           onChange={handlePhotos}
            />
 
            <label>Add Location</label>
            <input
            type="text"
            name="location"
-           onChange={(event) => this.handleChange(event)}
-           value={this.state.location}
+           onChange={(event) => setLocation(event.target.value)}
            />
 
            <label>Add Time</label>
            <input
            type="text"
            name="time"
-           onChange={(event) => this.handleChange(event)}
-           value={this.state.time}
+           onChange={(event) => setTime(event.target.value)}
            />
 
            <button type="submit">Create Post</button>
@@ -101,6 +78,3 @@ class AddPhoto extends Component {
     )
 
 }
-}
-
-export default AddPhoto;

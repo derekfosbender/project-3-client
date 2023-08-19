@@ -65,7 +65,7 @@ function MeetupPage() {
             );
         })
     ) : (
-        <h2>No Meets to Display</h2>
+        <h2>No Meets</h2>
     );
 };
 
