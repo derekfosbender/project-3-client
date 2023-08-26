@@ -26,9 +26,10 @@ export default function Meets() {
       <div>
         {console.log({getMeets})}
       {getMeets.map((meet,i) => (
-        <div className='row' key={meet._id}>
+        <div key={meet._id}>
+          <Link to={`/meet/${meet._id}`}>
           <img className='img' src={meet.photo} alt={` ${i}`} />
-          <Link to={`/meet/${meet._id}`}>Meet Details</Link>
+          </Link>
         </div>
       ))}
     </div>

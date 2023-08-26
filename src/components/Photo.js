@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { TextAlignment } from '@cloudinary/url-gen/qualifiers';
+import { center } from '@cloudinary/url-gen/qualifiers/textAlignment';
 const API_URL= process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 
@@ -25,9 +27,10 @@ export default function Photos() {
   return (
     <div>
       {photos.map((photo, i) => (
-        <div className='row' key={photo._id}>
+        <div key={photo._id}>
+          <Link to={`/photo/${photo._id}`}>
           <img className='img' src={photo.photo} alt={`Photo ${i}`} />
-          <Link to={`/photo/${photo._id}`}>Photo Details</Link>
+          </Link>
         </div>
       ))}
     </div>

@@ -28,6 +28,7 @@ export default function PhotoDetails() {
         <div>
 
         <div>
+        <img className='img' src={detailsPhoto.photo} />
           <p><span>Location:</span> {detailsPhoto.location}</p>
           <br></br>
           <p><span>Time:</span> {detailsPhoto.time}</p>
